@@ -271,9 +271,28 @@ python main.py             # usa caché
 python scripts/make_notebook.py
 ```
 
+## Publicación (GitHub Pages) — 2026-10-13
+
+- Repo: **https://github.com/JoseMariaGarciaMarquez/vivienda-cdmx** (público,
+  cuenta personal; remote vía alias SSH `github-personal:...`, el
+  `git@github.com` pelado NO autentica porque las llaves viven en alias).
+- Sitio: **https://josemariagarciamarquez.github.io/vivienda-cdmx/** —
+  Pages servido desde `main` / `/docs` (`build_type: legacy`), con `.nojekyll`.
+- `src/publicar.py` copia `outputs/{vivienda_cdmx,vivienda_cdmx_interactivo}.html`
+  a `docs/` y escribe `docs/index.html` (portada con 2 botones). `main.py` lo
+  llama al final de `etapa_report`, así que publicar = correr el pipeline +
+  commit de `docs/`.
+- Versionado: `.gitignore` ignora **todo `data/`** (raw tiene un CSV de ~70 MB)
+  y **`outputs/`** (build regenerable). Solo se versiona `docs/` (el sitio).
+- `gh` CLI instalado sin root en `~/.local/bin/gh` (2.102.0); sesión de gh
+  autenticada como JoseMariaGarciaMarquez (device flow).
+- Pendiente si se refresca seguido: `docs/vivienda_cdmx_interactivo.html` pesa
+  ~11.7 MB (plotly inline); cada commit lo re-guarda. Si el historial engorda,
+  considerar cargar plotly por CDN solo en la copia publicada.
+
 ## Ojo / deuda técnica
 - PADIM cambia su modelo sin aviso (es proyecto joven): el shape de `/v1/properties`
   se verificó a ago-2026; si rompe, revisar `/openapi.json`.
 - CuboAPI GetFinanciamiento devuelve anual aunque pidamos dimensión; detalle
   mensual vía CSVs mensuales de SNIIV (fuera de v1).
-- `main.py` no crea git; queda pendiente `git init` para la cueva.
+- ✅ `git init` hecho (2026-10-13) y publicado en GitHub Pages (ver arriba).
