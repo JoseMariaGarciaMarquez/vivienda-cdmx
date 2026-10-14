@@ -1,0 +1,18 @@
+# Datos: crudos y procesados se regeneran con `python main.py --refresh`.
+# No se versionan (raw/ incluye un CSV de ~70 MB de manzanas del Censo).
+data/*
+!data/README.md
+
+# Salidas de build: gráficas y dashboards se regeneran con `python main.py`.
+# El sitio publicado vive versionado en docs/ (ver src/publicar.py).
+outputs/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.ipynb_checkpoints/
+
+# Sistema
+.DS_Store
+*.log

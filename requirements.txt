@@ -1,0 +1,7 @@
+pandas>=2.2
+matplotlib>=3.8
+requests>=2.31
+openpyxl>=3.1
+xlrd>=2.0
+nbformat>=5.1
+nbclient>=0.10
